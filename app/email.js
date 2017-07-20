@@ -11,19 +11,17 @@ class Email extends Component {
         super(props);
     }
 
- //    hangeValue(event) {
-	//     this.props.setValue(event.target.value);
-	// }
-
 	validate() {
 	    return !!this.props.getValue();
 	}
 
     render() {
+        const errorMessage = this.props.getErrorMessage();
         return (
            	<div>
            		<label>Test</label>
-	        	<input name="email" value={this.props.getValue()} onChange={(e) => this.props.setValue(e.target.value)}/>
+	        	<input name="email" onChange={() => {}} value={this.props.getValue()} onChange={(e) => this.props.setValue(e.target.value)}/>
+                 <span>{errorMessage}</span>
 	      	</div>
         );
     }

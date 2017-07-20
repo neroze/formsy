@@ -9,14 +9,31 @@ class Form extends Component {
 
     constructor(props) {
         super(props);
+        this.showEmail = this.showEmail.bind(this);
+    }
+
+    showEmail(){
+        alert(this.email.getValue())
     }
 
     render() {
         return (
             <Formsy.Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
-            	<Email name="email" innerRef={(c) => { this.email = c; }} />
+            	<Email
+                    validations={{
+                        isEmail: true,
+                        maxLength: 50,
+                        // required: true
+                    }}
+
+                    validationErrors={{
+                        isEmail: 'You have to type valid email',
+                        maxLength: 'You can not type in more than 50 characters',
+                        // required: 'Field required'
+                    }}
+                    name="email" ref={(c) => { this.email = c; }} required />
             	<div className="buttons">
-		          <button type="submit" >Submit</button>
+		          <button type="submit" onClick={this.showEmail} >Submit</button>
 		        </div>
             </Formsy.Form>
         );
