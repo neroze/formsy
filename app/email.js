@@ -15,12 +15,18 @@ class Email extends Component {
 	    return !!this.props.getValue();
 	}
 
+    changeValue(event) {
+        console.log("Email Value : ",event.currentTarget.value);
+        this.setValue(event.currentTarget.value);
+    }
+
+
     render() {
         const errorMessage = this.props.getErrorMessage();
         return (
            	<div>
-           		<label>Test</label>
-	        	<input name="email" onChange={() => {}} value={this.props.getValue()} onChange={(e) => this.props.setValue(e.target.value)}/>
+           		<label>Test {this.props.isRequired() ? '*' : null} </label>
+	        	<input name="email"  value={this.props.getValue()} onChange={(e) => this.props.setValue(e.target.value)}/>
                  <span>{errorMessage}</span>
 	      	</div>
         );
